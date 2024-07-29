@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="header">
         moofin's library
@@ -21,82 +23,42 @@
         </div>
         <div class="add-book-form">
             <p class="heading">Add a book!</p>
-            <form action="#" method="post">
+            <!-- To add onsubmit -->
+            <form id="book-form" onsubmit="">
                 <div class="form-input">
                     <label for="title">Title</label>
-                    <input type="text" id="title">
+                    <input type="text" id="title" required>
                 </div>
                 <div class="form-input">
                     <label for="author">Author</label>
-                    <input type="text" id="author">
+                    <input type="text" id="author" required>
                 </div>
                 <div class="form-input">
                     <label for="pages">Number of pages</label>
-                    <input type="number" id="pages">
+                    <input type="number" id="pages" required>
                 </div>
                 <div class="form-input">
-                    <label for="title">Finished</label>
-                    <input type="checkbox" id="title">
+                    <label for="finished">Finished</label>
+                    <input type="checkbox" id="finished">
                 </div>
                 <button type="submit" id="submit">Add</button>
             </form>
         </div>
         <div class="books">
-            <div class="card">
-                <div class="title">
-                    <p class="label">Title</p>
-                    <p class="data">some title</p>
+            <template id="card-template">
+                <div class="card">
+                    <p class="label">Title<br><span class="title">Placeholder</span></p>
+                    <p class="label">Author<br><span class="author">Placeholder</span></p>
+                    <p class="label">Pages<br><span class="pages">0</span></p>
+                    <p class="label">Finished<br><span class="finished">false</span></p>
+
+                    <div class="buttons">
+                        <button class="toggle-read">Toggle read</button>
+                        <button class="delete">Delete</button>
+                    </div>
+                    <div class="status"></div>
                 </div>
-                <div class="author">
-                    <p class="label">Author</p>
-                    <p class="data">some author</p>
-                </div>
-                <div class="pages">
-                    <p class="label">Pages</p>
-                    <p class="data">some pages</p>
-                </div>
-                <div class="finished">
-                    <p class="label">Finished</p>
-                    <p class="data">isFinished</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="title">
-                    <p class="label">Title</p>
-                    <p class="data">some title</p>
-                </div>
-                <div class="author">
-                    <p class="label">Author</p>
-                    <p class="data">some author</p>
-                </div>
-                <div class="pages">
-                    <p class="label">Pages</p>
-                    <p class="data">some pages</p>
-                </div>
-                <div class="finished">
-                    <p class="label">Finished</p>
-                    <p class="data">isFinished</p>
-                </div>
-            </div>
-            <div class="card">
-                <div class="title">
-                    <p class="label">Title</p>
-                    <p class="data">some title</p>
-                </div>
-                <div class="author">
-                    <p class="label">Author</p>
-                    <p class="data">some author</p>
-                </div>
-                <div class="pages">
-                    <p class="label">Pages</p>
-                    <p class="data">some pages</p>
-                </div>
-                <div class="finished">
-                    <p class="label">Finished</p>
-                    <p class="data">isFinished</p>
-                </div>
-            </div>
-            
+            </template>
         </div>
     </div>
 
@@ -106,4 +68,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
