@@ -1,3 +1,5 @@
+const available = document.querySelector(".available");
+
 const books = document.querySelector(".books");
 const inTitle = document.getElementById("title");
 const inAuthor = document.getElementById("author");
@@ -5,7 +7,6 @@ const inPages = document.getElementById("pages");
 const inFinished = document.getElementById("finished");
 const submitButton = document.getElementById("submit");
 const template = document.getElementById("card-template");
-
 
 const library = [];
 let dataId = 0;
@@ -18,7 +19,6 @@ function book(title, author, pages, finished, id){
     this.dataId = id
 }
 
-
 function addBookToLibrary(){
     const clone = template.content.cloneNode(true);
 
@@ -29,10 +29,10 @@ function addBookToLibrary(){
     const finished = clone.querySelector(".finished");
     const buttons = clone.querySelector(".buttons");
     const status = clone.querySelector(".status");
-
+    
     const userInput = [inTitle.value, inAuthor.value, inPages.value, inFinished.checked]
     resetInput()
-
+    
     card.dataset.dataId = dataId;
     title.textContent = userInput[0];
     author.textContent = userInput[1];
@@ -40,12 +40,13 @@ function addBookToLibrary(){
     if(userInput[3] === true){
         toggleRead(finished, status);
     };
-
+    
     library.push(new book(userInput[0], userInput[1], userInput[2], userInput[3], dataId))
-
+    
     buttons.addEventListener("click", (e) => {
         if(e.target.className === "delete") {
             deleteBook(card);
+            updateTotal();
         }
         else if (e.target.className === "toggle-read") {
             toggleRead(finished, status, parseInt(card.dataset.dataId));
@@ -80,11 +81,15 @@ function resetInput() {
     inFinished.checked = false;
 }
 
+function updateTotal(){
+    available.textContent = library.length;
+}
+
 submitButton.addEventListener("click", (e)=> {
     e.preventDefault();
     if (inTitle.value.length > 0 && inAuthor.value.length > 0 && inPages.value.length > 0){
         addBookToLibrary();
+        updateTotal();
         dataId++;
     };
 });
-
